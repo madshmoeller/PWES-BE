@@ -96,7 +96,8 @@ class PWES_for_protein:
     def calc_PWES_pwij(self):
         
         df = self.df.copy()
-        
+        #change resnum to string
+        df["resnum"] = df["resnum"].astype(str)
         #get unique "chain" values
         chains = df["chain"].unique()
         

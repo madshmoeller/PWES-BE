@@ -182,9 +182,9 @@ def plot_PWES_fn(tiling_df, PWES_array, protein_name, linkage_matrix, dict_of_sc
     cbar = plt.colorbar(color_bar, ax=ax)
     cbar.set_label('Number of Entries in Cluster')
     # x-axis label
-    plt.ylabel('Cluster')
+    plt.ylabel('LFC')
     # y-axis label
-    plt.xlabel('LFC')
+    plt.xlabel('Cluster')
 
     plt.title(f"Gene: {protein_name}\nNumber of Clusters: {len(np.unique(clusters))}\n Distance Threshold: {threshold}")
     plt.tight_layout()

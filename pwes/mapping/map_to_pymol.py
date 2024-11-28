@@ -3,11 +3,12 @@ try:
     import pymol2
     pymol = True
 except:
+    print("not using pymol")
     pymol = None
 
 
 if pymol:
-    
+    print("using pymol")
     def map_to_pymol(pdb_location, dict_of_clusters, n_clusters, output_dir, protein_name):
         
         with pymol2.PyMOL() as pymol:
