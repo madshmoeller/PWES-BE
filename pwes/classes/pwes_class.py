@@ -121,10 +121,15 @@ class PWES_for_protein:
             
             df_chain = df_chain[df_chain["resnum"].apply(lambda x: len(x) > 0)]
             
-            # remove rows if any res_num is not in the pdb
-            
-            df_chain = df_chain[df_chain["resnum"].apply(lambda x: all([int(res_num) in resnum_in_pdb for res_num in x]))]
-            
+            # remove rows if any res_num is not in the pdb, or if entry not valid number
+            def try_int_and_check(x, resnum_in_pdb):
+                try:
+                    return all(int(res_num) in resnum_in_pdb for res_num in x)
+                except ValueError:
+                    return False
+
+            df_chain = df_chain[df_chain["resnum"].apply(lambda x: try_int_and_check(x, resnum_in_pdb))]
+
             # add to collection_df
             collection_df.append(df_chain)
 

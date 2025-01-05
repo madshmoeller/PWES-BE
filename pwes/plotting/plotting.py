@@ -148,9 +148,11 @@ def plot_PWES_fn(tiling_df, PWES_array, protein_name, linkage_matrix, dict_of_sc
     cluster_count = tiling_df['cluster'].value_counts()
     
     #output the cluster count to a csv file
-    cluster_count.to_csv(os.path.join(output_directory,f"{protein_name}_cluster_count_{n_clusters}.csv"))
+    #cluster_count.to_csv(os.path.join(output_directory,f"{protein_name}_cluster_count_{n_clusters}.csv"))
     
     tiling_df['cluster_count'] = tiling_df['cluster'].map(cluster_count)
+    
+    tiling_df[["cluster", "seq", "protein_changes", "log_fold_change", "log_p_value", "behive_logit_score"]].to_csv(os.path.join(output_directory, f"{protein_name}_clusters_{n_clusters}.csv"), index=False)
     
     
     # Create a color palette based on the number of unique clusters
